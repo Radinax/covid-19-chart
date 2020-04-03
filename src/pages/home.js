@@ -1,24 +1,82 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
+import { connect } from 'react-redux'
+import isEmpty from 'lodash/isEmpty'
+// Actions
+import { fetchCovidGlobalData, fetchCovidVenezuelaData } from '../slices'
 // Components
 import CovidGlobalChart from '../components/charts/covidGlobalChart'
 import CovidVenezuelaChart from '../components/charts/covidVenezuelaChart'
+import CovidMap from '../components/maps'
+import Dashboard from '../components/dashboard'
+import Select from '../components/select'
+// Styles
+import './styles.css'
 
-const Home = () => {
-  const [toggle, setToggle] = useState(true)
-  const onClick = () => setToggle(!toggle)
-  const button = (
-    <div style={{ marginBottom: '20px', marginTop: '20px' }}>    
-      <button onClick={onClick}>{toggle ? 'Switch to all countries' : "Switch to Venezuela's states"}</button>
-    </div>
+const mapDispatchToProps = ({ fetchCovidVenezuelaData, fetchCovidGlobalData })
+const mapStateToProps = state => ({
+  covidVenezuela: {
+    data: state.covidVenezuela.data,
+    loading: state.covidVenezuela.loading
+  },
+  covidGlobal: {
+    data: state.covidGlobal.data,
+    loading: state.covidGlobal.loading
+  }
+})
+
+const selectOptions = ['Chart by Countries', 'Chart by states in Venezuela', 'Venezuela Map']
+
+const Home = ({ fetchCovidVenezuelaData, fetchCovidGlobalData, covidVenezuela, covidGlobal }) => {
+  const [view, setView] = useState(selectOptions[0])
+  const [venezuelaData, setVenezuelaData] = useState([])
+  const [globalData, setGlobalData] = useState([])
+  const [selectedCountry, setSelectedCountry] = useState('Venezuela')
+
+  const dashboardData = view === selectOptions[0]
+    ? globalData[selectedCountry]
+    : globalData['Venezuela']
+
+  const onChange = e => setView(e.target.value)
+  const countryHandler = value => setSelectedCountry(value)
+
+  useEffect(() => {
+    // SETS DATA FOR GLOBAL AND VENEZUELA
+    if (isEmpty(covidVenezuela.data)) fetchCovidVenezuelaData('venezuela')
+    if (isEmpty(covidGlobal.data)) fetchCovidGlobalData('Venezuela')
+    const responseVenezuela = covidVenezuela.data || []
+    const responseGlobal = covidGlobal.data || []
+    setVenezuelaData(responseVenezuela)
+    setGlobalData(responseGlobal)
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [covidVenezuela, fetchCovidVenezuelaData])
+
+  const dashboard = (
+    <Dashboard data={dashboardData}>      
+      <Select
+        name='Select View'
+        value={view}
+        values={selectOptions}
+        onChange={onChange}
+      />
+    </Dashboard>
   )
+  const covidVenezuelaChart = <CovidVenezuelaChart data={venezuelaData} height='750px' />
+  const covidGlobalChart = <CovidGlobalChart countryHandler={countryHandler} data={globalData} height='600px' />
+  const covidMap =  <CovidMap data={venezuelaData}  />
+
+  if (covidVenezuela.loading || covidGlobal.loading) return <div>LOADING</div>
+
   return (
-    <div>
-      {button}
-      {toggle
-        ? <CovidVenezuelaChart height='750px' />
-        : <CovidGlobalChart height='600px' /> }
+    <div className='container'>
+      {dashboard}
+      {view === selectOptions[0] && covidGlobalChart}
+      {view === selectOptions[1] && covidVenezuelaChart}
+      {view === selectOptions[2] && covidMap}
     </div>
   )
 }
 
-export default Home
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(Home)

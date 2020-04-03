@@ -73,20 +73,8 @@ const sliceCovidGlobal = createSlice({
 
 const reducer = combineReducers({
   covidVenezuela: sliceCovidVenezuela.reducer,
-  covidGlobal: sliceCovidGlobal.reducer,
+  covidGlobal: sliceCovidGlobal.reducer
 })
-
-// Destructuring the actions we're gonna use in the app
-export const {
-  fetchingCovidDataVenezuela,
-  fetchingCovidDataVenezuelaSuccess,
-  fetchingCovidDataVenezuelaError
-} = sliceCovidVenezuela.actions
-export const {
-  fetchingCovidGlobalData,
-  fetchingCovidGlobalDataSuccess,
-  fetchingCovidGlobalDataError
-} = sliceCovidGlobal.actions
 
 // Configuring our store which will be used in Provider to enable Global State
 export const store = configureStore({

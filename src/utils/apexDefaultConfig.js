@@ -1,5 +1,4 @@
 export default function(title, isHorizontal) {
-  console.log('ishir', isHorizontal)
   return {
     options: {
       chart: {
