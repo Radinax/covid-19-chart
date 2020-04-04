@@ -24,7 +24,10 @@ const mapStateToProps = state => ({
   }
 })
 
-const selectOptions = ['Chart by Countries', 'Chart by states in Venezuela', 'Venezuela Map']
+const vw = Math.max(document.documentElement.clientWidth, window.innerWidth || 0)
+const isMobile = vw < 450
+
+const selectOptions = ['Venezuela Map', 'Chart by states in Venezuela', 'Chart by Countries']
 
 const Home = ({ fetchCovidVenezuelaData, fetchCovidGlobalData, covidVenezuela, covidGlobal }) => {
   const [view, setView] = useState(selectOptions[0])
@@ -32,7 +35,7 @@ const Home = ({ fetchCovidVenezuelaData, fetchCovidGlobalData, covidVenezuela, c
   const [globalData, setGlobalData] = useState([])
   const [selectedCountry, setSelectedCountry] = useState('Venezuela')
 
-  const dashboardData = view === selectOptions[0]
+  const dashboardData = view === selectOptions[2]
     ? globalData[selectedCountry]
     : globalData['Venezuela']
 
@@ -51,7 +54,7 @@ const Home = ({ fetchCovidVenezuelaData, fetchCovidGlobalData, covidVenezuela, c
   }, [covidVenezuela, fetchCovidVenezuelaData])
 
   const dashboard = (
-    <Dashboard data={dashboardData}>      
+    <Dashboard data={dashboardData} globalData={globalData} isMobile={isMobile}>      
       <Select
         name='Select View'
         value={view}
@@ -60,8 +63,22 @@ const Home = ({ fetchCovidVenezuelaData, fetchCovidGlobalData, covidVenezuela, c
       />
     </Dashboard>
   )
-  const covidVenezuelaChart = <CovidVenezuelaChart data={venezuelaData} height='750px' />
-  const covidGlobalChart = <CovidGlobalChart countryHandler={countryHandler} data={globalData} height='600px' />
+  const covidVenezuelaChart = (
+    <CovidVenezuelaChart
+      isMobile={isMobile}
+      data={venezuelaData}
+      height={isMobile ? '1500px' : '750px'}
+      width={isMobile ? null : '1000px'}
+    />
+  )
+  const covidGlobalChart = (
+    <CovidGlobalChart
+      countryHandler={countryHandler}
+      data={globalData}
+      height={isMobile ? '500px' : '600px'}
+      width={isMobile ? null : '1000px'}
+    />
+  )
   const covidMap =  <CovidMap data={venezuelaData}  />
 
   if (covidVenezuela.loading || covidGlobal.loading) return <div>LOADING</div>
@@ -69,9 +86,9 @@ const Home = ({ fetchCovidVenezuelaData, fetchCovidGlobalData, covidVenezuela, c
   return (
     <div className='container'>
       {dashboard}
-      {view === selectOptions[0] && covidGlobalChart}
+      {view === selectOptions[0] && covidMap}
       {view === selectOptions[1] && covidVenezuelaChart}
-      {view === selectOptions[2] && covidMap}
+      {view === selectOptions[2] && covidGlobalChart}
     </div>
   )
 }

@@ -11,8 +11,33 @@
   font-size: .7rem;
   display: flex;
   flex-direction: column;
+  justify-content: space-around;
+  height: 88%;
+}
+
+.menu-container {
+  width: 80%;
+}
+
+.menu-box {
+  overflow: auto;
+  height: 90%;
+  border-bottom: 1px solid white;
+  flex-direction: column;
+}
+
+.menu-item {
+  display: flex;
   justify-content: space-between;
-  height: 100%;
+  margin-bottom: .5rem;
+}
+
+.menu-title {
+  font-weight: bold;
+}
+
+.isSticky {
+  position: fixed;
 }
 
 .menu.span {
@@ -22,6 +47,22 @@
 .menu.author, a {
   margin-top: auto;
   color: white;
+}
+
+.author {
+  text-align: center;
+}
+
+img {
+  height: 25px;
+  width: 25px;
+  margin-right: 1rem;
+}
+
+.socialMedia {
+  display: flex;
+  justify-content: center;
+  margin-top: 1rem;
 }
 
 @media only screen and (max-width: 768px) {

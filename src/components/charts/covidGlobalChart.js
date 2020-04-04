@@ -6,7 +6,7 @@ import ApexChart from '../ApexChart'
 import defaultConfig from '../../utils/apexDefaultConfig'
 import './styles.css'
 
-const CovidGlobalChart = ({ height, data, countryHandler }) => {
+const CovidGlobalChart = ({ height, data, countryHandler, width }) => {
   const [apexConfigGlobal, setApexConfigGlobal] = useState(defaultConfig('COVID-19 GLOBAL'))
   const [country, setCountry] = useState('Venezuela')
   const [countries, setCountries] = useState([])
@@ -43,7 +43,13 @@ const CovidGlobalChart = ({ height, data, countryHandler }) => {
   return (
     <div style={{ display:'flex', alignItems: 'center', flexDirection: 'column' }}>
       {Select}
-      <ApexChart height={height} type='bar' options={apexConfigGlobal.options} series={apexConfigGlobal.series} />
+      <ApexChart
+        height={height}
+        width={width}
+        type='bar'
+        options={apexConfigGlobal.options}
+        series={apexConfigGlobal.series}
+      />
     </div>
   )
 }

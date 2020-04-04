@@ -27,7 +27,9 @@ const CovidMap = ({ data }) => {
   const position = [8.5, -66]
   const zoom = 7
   let arr = []
-  data.cities.forEach(service => {
+  const cities = data.cities || []
+  
+  cities.forEach(service => {
     coordinates.forEach(o => {
       if(service.state === o.state) {
         arr.push({ ...service, ...o })
