@@ -68,7 +68,7 @@ const Home = ({ fetchCovidVenezuelaData, fetchCovidGlobalData, covidVenezuela, c
       isMobile={isMobile}
       data={venezuelaData}
       height={isMobile ? '1500px' : '750px'}
-      width={isMobile ? null : '1000px'}
+      width={isMobile ? '100%' : '1000px'}
     />
   )
   const covidGlobalChart = (
@@ -76,7 +76,7 @@ const Home = ({ fetchCovidVenezuelaData, fetchCovidGlobalData, covidVenezuela, c
       countryHandler={countryHandler}
       data={globalData}
       height={isMobile ? '500px' : '600px'}
-      width={isMobile ? null : '1000px'}
+      width={isMobile ? '100%' : '1000px'}
     />
   )
   const covidMap =  <CovidMap data={venezuelaData}  />
