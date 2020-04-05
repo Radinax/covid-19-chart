@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react'
 import isEmpty from 'lodash/isEmpty'
+import PropTypes from 'prop-types'
 // Components
 import ApexChart from '../ApexChart'
 // utils
@@ -52,6 +53,16 @@ const CovidGlobalChart = ({ height, data, countryHandler, width }) => {
       />
     </div>
   )
+}
+
+CovidGlobalChart.propTypes = {
+  height: PropTypes.string,
+  data: PropTypes.oneOfType([
+    PropTypes.shape({}),
+    PropTypes.array
+  ]),
+  countryHandler: PropTypes.func,
+  width: PropTypes.string
 }
 
 export default CovidGlobalChart

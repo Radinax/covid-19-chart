@@ -1,8 +1,8 @@
 import React, { Fragment, useState } from 'react'
-import { string, arrayOf, object } from 'prop-types'
+import { string, arrayOf, object, bool } from 'prop-types'
 import { capitalizeFirstLetter } from '../../utils/capitalizeFirstLetter'
 
-const Table = ({ headerData, bodyData }) => {
+const Table = ({ headerData, bodyData, isMobile }) => {
   const [data, setData] = useState(null)
   const [asc, setAsc] = useState(true)
 
@@ -51,7 +51,7 @@ const Table = ({ headerData, bodyData }) => {
 
   return (
     <Fragment>
-      <table style={{ marginTop: '2rem', paddingRight: '1rem' }}>
+      <table style={{ marginTop: isMobile ? '0' : '2rem', paddingRight: '1rem' }}>
         {tableHeader}
         {tableBody(temp)}
       </table>
@@ -61,7 +61,8 @@ const Table = ({ headerData, bodyData }) => {
 
 Table.propTypes = {
   headerData: arrayOf(string),
-  bodyData: arrayOf(object)
+  bodyData: arrayOf(object),
+  isMobile: bool,
 }
 
 export default Table;

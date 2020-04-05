@@ -1,4 +1,5 @@
-import React from 'react'
+import React, { useState } from 'react'
+import PropTypes from 'prop-types'
 import Table from '../table'
 import Github from '../../assets/git.png'
 import Linkedin from '../../assets/linked.png'
@@ -6,9 +7,12 @@ import Twitter from '../../assets/twitter.png'
 import './styles.css'
 
 const Dashboard = ({ children, data, globalData, isMobile }) => {
+  const [showTable, setShowTable] = useState(false)
   const confirmedCases = data && data.nationwide && data.nationwide.confirmed
   const totalDeaths = data && data.nationwide && data.nationwide.deaths
   const recoveredCases = data && data.nationwide && data.nationwide.recovered
+
+  const onClick = () => setShowTable(!showTable)
 
   const menuData = (
     <div className='menu-container'>
@@ -40,7 +44,7 @@ const Dashboard = ({ children, data, globalData, isMobile }) => {
       recovered
     })
   })
-  const table = <Table headerData={headerData} bodyData={bodyData}/>
+  const table = <Table isMobile={isMobile} headerData={headerData} bodyData={bodyData}/>
 
   const socialMedia = (
     <div className='socialMedia'>
@@ -64,12 +68,22 @@ const Dashboard = ({ children, data, globalData, isMobile }) => {
       {socialMedia}
     </div>
   )
+
   const isSticky = isMobile ? 'sticky' : ''
+ 
+  const showTableButton = (
+    <div className='show-table-button'>    
+      <button onClick={onClick}>{showTable ? 'Hide data' : 'Show COVID-19 global data'}</button>
+    </div>
+  )
+
   const menu = (
     <aside className='menu'>
       <div className='menu-box'>      
         {menuData}
         {!isMobile && table}
+        {isMobile && showTableButton}
+        {isMobile && showTable && table}
       </div>
       {authorData}
     </aside>
@@ -81,6 +95,19 @@ const Dashboard = ({ children, data, globalData, isMobile }) => {
       {menu}
     </div>
   )
+}
+
+Dashboard.propTypes = {
+  children: PropTypes.element,
+  data: PropTypes.oneOfType([
+    PropTypes.shape({}),
+    PropTypes.array
+  ]),
+  globalData: PropTypes.oneOfType([
+    PropTypes.shape({}),
+    PropTypes.array
+  ]),
+  isMobile: PropTypes.bool
 }
 
 export default Dashboard

@@ -1,4 +1,5 @@
 import React from 'react'
+import PropTypes from 'prop-types'
 import { Map, TileLayer, Marker, Tooltip } from 'react-leaflet'
 
 const coordinates = [
@@ -56,6 +57,13 @@ const CovidMap = ({ data }) => {
       {markers}
     </Map>
   );
+}
+
+CovidMap.propTypes = {
+  data: PropTypes.oneOfType([
+    PropTypes.shape({}),
+    PropTypes.array
+  ])
 }
 
 

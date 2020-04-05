@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react'
+import PropTypes from 'prop-types'
 import { connect } from 'react-redux'
 import isEmpty from 'lodash/isEmpty'
 // Actions
@@ -32,7 +33,7 @@ const selectOptions = ['Venezuela Map', 'Chart by states in Venezuela', 'Chart b
 const Home = ({ fetchCovidVenezuelaData, fetchCovidGlobalData, covidVenezuela, covidGlobal }) => {
   const [view, setView] = useState(selectOptions[0])
   const [venezuelaData, setVenezuelaData] = useState([])
-  const [globalData, setGlobalData] = useState([])
+  const [globalData, setGlobalData] = useState({})
   const [selectedCountry, setSelectedCountry] = useState('Venezuela')
 
   const dashboardData = view === selectOptions[2]
@@ -47,7 +48,7 @@ const Home = ({ fetchCovidVenezuelaData, fetchCovidGlobalData, covidVenezuela, c
     if (isEmpty(covidVenezuela.data)) fetchCovidVenezuelaData('venezuela')
     if (isEmpty(covidGlobal.data)) fetchCovidGlobalData('Venezuela')
     const responseVenezuela = covidVenezuela.data || []
-    const responseGlobal = covidGlobal.data || []
+    const responseGlobal = covidGlobal.data || {}
     setVenezuelaData(responseVenezuela)
     setGlobalData(responseGlobal)
   // eslint-disable-next-line react-hooks/exhaustive-deps
@@ -71,6 +72,7 @@ const Home = ({ fetchCovidVenezuelaData, fetchCovidGlobalData, covidVenezuela, c
       width={isMobile ? '100%' : '1000px'}
     />
   )
+
   const covidGlobalChart = (
     <CovidGlobalChart
       countryHandler={countryHandler}
@@ -91,6 +93,19 @@ const Home = ({ fetchCovidVenezuelaData, fetchCovidGlobalData, covidVenezuela, c
       {view === selectOptions[2] && covidGlobalChart}
     </div>
   )
+}
+
+Home.propTypes = {
+  fetchCovidVenezuelaData: PropTypes.func,
+  fetchCovidGlobalData: PropTypes.func,
+  covidVenezuela: PropTypes.oneOfType([
+    PropTypes.shape({}),
+    PropTypes.array
+  ]),
+  covidGlobal: PropTypes.oneOfType([
+    PropTypes.shape({}),
+    PropTypes.array
+  ])
 }
 
 export default connect(
