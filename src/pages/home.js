@@ -7,7 +7,8 @@ import { fetchCovidGlobalData, fetchCovidVenezuelaData } from '../slices'
 // Components
 import CovidGlobalChart from '../components/charts/covidGlobalChart'
 import CovidVenezuelaChart from '../components/charts/covidVenezuelaChart'
-import CovidMap from '../components/maps'
+import CovidVenezuelaMap from '../components/maps/covidVenezuelaMap'
+import CovidGlobalMap from '../components/maps/covidGlobalMap'
 import Dashboard from '../components/dashboard'
 import Select from '../components/select'
 // Styles
@@ -28,7 +29,7 @@ const mapStateToProps = state => ({
 const vw = Math.max(document.documentElement.clientWidth, window.innerWidth || 0)
 const isMobile = vw < 450
 
-const selectOptions = ['Venezuela Map', 'Chart by states in Venezuela', 'Chart by Countries']
+const selectOptions = ['Venezuela Map', 'Chart by states in Venezuela', 'Chart by Countries', 'World Map']
 
 const filterByCountry = (arr, country) => arr.filter(o => o.country === country)[0]
 
@@ -83,16 +84,18 @@ const Home = ({ fetchCovidVenezuelaData, fetchCovidGlobalData, covidVenezuela, c
       width={isMobile ? '100%' : '1000px'}
     />
   )
-  const covidMap =  <CovidMap data={venezuelaData}  />
+  const covidVenezuelaMap =  <CovidVenezuelaMap data={venezuelaData}  />
+  const covidGlobalMap =  <CovidGlobalMap data={globalData}  />
 
   if (covidVenezuela.loading || covidGlobal.loading) return <div>LOADING</div>
 
   return (
     <div className='container'>
       {dashboard}
-      {view === selectOptions[0] && covidMap}
+      {view === selectOptions[0] && covidVenezuelaMap}
       {view === selectOptions[1] && covidVenezuelaChart}
       {view === selectOptions[2] && covidGlobalChart}
+      {view === selectOptions[3] && covidGlobalMap}
     </div>
   )
 }

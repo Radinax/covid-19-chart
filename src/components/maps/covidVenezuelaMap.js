@@ -24,7 +24,7 @@ const coordinates = [
   // { state: 'Estado no definido', lat: 10.064, lng: -69.357 },
 ]
 
-const CovidMap = ({ data }) => {
+const CovidVenezuelaMap = ({ data }) => {
   const position = [8.5, -66]
   const zoom = 7
   let arr = []
@@ -59,7 +59,7 @@ const CovidMap = ({ data }) => {
   );
 }
 
-CovidMap.propTypes = {
+CovidVenezuelaMap.propTypes = {
   data: PropTypes.oneOfType([
     PropTypes.shape({}),
     PropTypes.array
@@ -67,4 +67,4 @@ CovidMap.propTypes = {
 }
 
 
-export default CovidMap
+export default CovidVenezuelaMap
