@@ -8,9 +8,9 @@ import './styles.css'
 
 const Dashboard = ({ children, data, globalData, isMobile }) => {
   const [showTable, setShowTable] = useState(false)
-  const confirmedCases = data && data.nationwide && data.nationwide.confirmed
-  const totalDeaths = data && data.nationwide && data.nationwide.deaths
-  const recoveredCases = data && data.nationwide && data.nationwide.recovered
+  const confirmedCases = data && data.cases
+  const totalDeaths = data && data.deaths
+  const recoveredCases = data && data.recovered
 
   const onClick = () => setShowTable(!showTable)
 
@@ -29,21 +29,15 @@ const Dashboard = ({ children, data, globalData, isMobile }) => {
   )
 
   const headerData = ['country', 'confirmed', 'deaths', 'recovered']
-  // eslint-disable-next-line no-sequences
-  const dataByOrder = Object.keys(globalData).sort().reduce((r, k) => (r[k] = globalData[k], r), {});
-  const countriesData = Object.values(dataByOrder)
-  const countriesName = Object.keys(dataByOrder)
-  const bodyData = countriesName.map((country, index) => {
-    const confirmed = countriesData[index].nationwide.confirmed
-    const deaths = countriesData[index].nationwide.deaths
-    const recovered = countriesData[index].nationwide.recovered
-    return ({
-      country,
-      confirmed,
-      deaths,
-      recovered
-    })
-  })
+ 
+  const bodyData = globalData.map(country => {
+   return ({
+     country: country.country,
+     confirmed: country.cases,
+     deaths: country.deaths,
+     recovered: country.recovered 
+   })
+ })
   const table = <Table isMobile={isMobile} headerData={headerData} bodyData={bodyData}/>
 
   const socialMedia = (

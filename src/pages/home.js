@@ -30,15 +30,17 @@ const isMobile = vw < 450
 
 const selectOptions = ['Venezuela Map', 'Chart by states in Venezuela', 'Chart by Countries']
 
+const filterByCountry = (arr, country) => arr.filter(o => o.country === country)[0]
+
 const Home = ({ fetchCovidVenezuelaData, fetchCovidGlobalData, covidVenezuela, covidGlobal }) => {
   const [view, setView] = useState(selectOptions[0])
   const [venezuelaData, setVenezuelaData] = useState([])
-  const [globalData, setGlobalData] = useState({})
+  const [globalData, setGlobalData] = useState([])
   const [selectedCountry, setSelectedCountry] = useState('Venezuela')
 
   const dashboardData = view === selectOptions[2]
-    ? globalData[selectedCountry]
-    : globalData['Venezuela']
+    ? filterByCountry(globalData, selectedCountry)
+    : filterByCountry(globalData, 'Venezuela')
 
   const onChange = e => setView(e.target.value)
   const countryHandler = value => setSelectedCountry(value)
@@ -48,7 +50,7 @@ const Home = ({ fetchCovidVenezuelaData, fetchCovidGlobalData, covidVenezuela, c
     if (isEmpty(covidVenezuela.data)) fetchCovidVenezuelaData('venezuela')
     if (isEmpty(covidGlobal.data)) fetchCovidGlobalData('Venezuela')
     const responseVenezuela = covidVenezuela.data || []
-    const responseGlobal = covidGlobal.data || {}
+    const responseGlobal = covidGlobal.data || []
     setVenezuelaData(responseVenezuela)
     setGlobalData(responseGlobal)
   // eslint-disable-next-line react-hooks/exhaustive-deps

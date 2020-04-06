@@ -15,16 +15,22 @@ const CovidGlobalChart = ({ height, data, countryHandler, width }) => {
   const onChangeSelect = e => setCountry(e.target.value)
   
   useEffect(() => {
-    const countries = !isEmpty(data) && Object.keys(data).sort()
+    const countries = !isEmpty(data) && data.map(o => o.country).sort()
     setCountries(countries)
+
     // Shaping our x and y axis data
-    const xaxisData = !isEmpty(data) && Object.keys(data[country].nationwide)
-    const yaxisData = !isEmpty(data) && Object.values(data[country].nationwide)
+    const xaxisData = ['cases', 'deaths', 'recovered']
+    const yaxisData = !isEmpty(data) && data.filter(o => o.country === country).map(v => ({
+        cases: v.cases,
+        deaths: v.deaths,
+        recovered: v.recovered
+      }))[0]
+
     if (!isEmpty(data)) {
       setApexConfigGlobal({
-        options: { ...apexConfigGlobal.options, xaxis: { categories: xaxisData.slice(1) } },
+        options: { ...apexConfigGlobal.options, xaxis: { categories: xaxisData } },
         series: [
-          { name: 'Cases', data: yaxisData.slice(1) }
+          { name: 'Cases', data: Object.values(yaxisData) }
         ] 
       })
     }
