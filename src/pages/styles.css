@@ -4,6 +4,13 @@
   height: stretch;
 }
 
+.loader {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+}
+
 @media (max-width: 500px) {
   .container {
     flex-direction: column;

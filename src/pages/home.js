@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react'
 import PropTypes from 'prop-types'
 import { connect } from 'react-redux'
 import isEmpty from 'lodash/isEmpty'
+import { DualRing } from 'react-awesome-spinners'
 // Actions
 import { fetchCovidGlobalData, fetchCovidVenezuelaData } from '../slices'
 // Components
@@ -87,7 +88,9 @@ const Home = ({ fetchCovidVenezuelaData, fetchCovidGlobalData, covidVenezuela, c
   const covidVenezuelaMap =  <CovidVenezuelaMap data={venezuelaData}  />
   const covidGlobalMap =  <CovidGlobalMap data={globalData}  />
 
-  if (covidVenezuela.loading || covidGlobal.loading) return <div>LOADING</div>
+  if (covidVenezuela.loading || covidGlobal.loading) {
+    return <div className='loader'><DualRing /></div>
+  }
 
   return (
     <div className='container'>
