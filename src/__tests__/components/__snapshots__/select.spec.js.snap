@@ -1,0 +1,65 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`if Select is working correctly renders 1`] = `
+<DocumentFragment>
+  <select
+    data-testid="select"
+    name="Select view"
+    required=""
+    style="height: 1rem; margin: 1rem;"
+  >
+    <option
+      value="Venezuela Map"
+    >
+      Venezuela Map
+    </option>
+    <option
+      value="Chart by states in Venezuela"
+    >
+      Chart by states in Venezuela
+    </option>
+    <option
+      value="Chart by Countries"
+    >
+      Chart by Countries
+    </option>
+    <option
+      value="World Map"
+    >
+      World Map
+    </option>
+  </select>
+</DocumentFragment>
+`;
+
+exports[`if Select is working correctly when user changes the option when it clicks the element 1`] = `
+<DocumentFragment>
+  <select
+    data-testid="select"
+    name="Select view"
+    required=""
+    style="height: 1rem; margin: 1rem;"
+  >
+    <option
+      value="Venezuela Map"
+    >
+      Venezuela Map
+    </option>
+    <option
+      value="Chart by states in Venezuela"
+    >
+      Chart by states in Venezuela
+    </option>
+    <option
+      value="Chart by Countries"
+    >
+      Chart by Countries
+    </option>
+    <option
+      value="World Map"
+    >
+      World Map
+    </option>
+  </select>
+</DocumentFragment>
+`;

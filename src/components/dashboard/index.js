@@ -15,7 +15,7 @@ const Dashboard = ({ children, data, globalData, isMobile }) => {
   const onClick = () => setShowTable(!showTable)
 
   const menuData = (
-    <div className='menu-container'>
+    <div data-testid='menu' className='menu-container'>
       <div className='menu-item'>
         <span className='menu-title'>Confirmed Cases:</span> {confirmedCases}  
       </div>
@@ -55,7 +55,7 @@ const Dashboard = ({ children, data, globalData, isMobile }) => {
   )
 
   const authorData = (
-    <div className='author'>
+    <div data-testid='social-media' className='author'>
       <div>
         Made by Adrian Beria
       </div>
@@ -84,7 +84,7 @@ const Dashboard = ({ children, data, globalData, isMobile }) => {
   )
 
   return(
-    <div className={`dashboard ${isSticky}`}>
+    <div data-testid='dashboard' className={`dashboard ${isSticky}`}>
       {children}
       {menu}
     </div>

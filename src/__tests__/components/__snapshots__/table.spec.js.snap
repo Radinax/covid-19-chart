@@ -1,0 +1,214 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`if Select is working correctly asc data 1`] = `
+<DocumentFragment>
+  <table
+    data-testid="table"
+    style="margin-top: 2rem; padding-right: 1rem;"
+  >
+    <thead>
+      <tr>
+        <th
+          style="text-align: start;"
+        >
+          <button>
+            Country
+          </button>
+        </th>
+        <th
+          style="text-align: start;"
+        >
+          <button>
+            Recovered
+          </button>
+        </th>
+        <th
+          style="text-align: start;"
+        >
+          <button>
+            Deaths
+          </button>
+        </th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td
+          style="text-align: start;"
+        >
+          B
+        </td>
+        <td
+          style="text-align: end;"
+        >
+          2
+        </td>
+        <td
+          style="text-align: end;"
+        >
+          1
+        </td>
+      </tr>
+      <tr>
+        <td
+          style="text-align: start;"
+        >
+          A
+        </td>
+        <td
+          style="text-align: end;"
+        >
+          1
+        </td>
+        <td
+          style="text-align: end;"
+        >
+          2
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</DocumentFragment>
+`;
+
+exports[`if Select is working correctly desc data 1`] = `
+<DocumentFragment>
+  <table
+    data-testid="table"
+    style="margin-top: 2rem; padding-right: 1rem;"
+  >
+    <thead>
+      <tr>
+        <th
+          style="text-align: start;"
+        >
+          <button>
+            Country
+          </button>
+        </th>
+        <th
+          style="text-align: start;"
+        >
+          <button>
+            Recovered
+          </button>
+        </th>
+        <th
+          style="text-align: start;"
+        >
+          <button>
+            Deaths
+          </button>
+        </th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td
+          style="text-align: start;"
+        >
+          A
+        </td>
+        <td
+          style="text-align: end;"
+        >
+          1
+        </td>
+        <td
+          style="text-align: end;"
+        >
+          2
+        </td>
+      </tr>
+      <tr>
+        <td
+          style="text-align: start;"
+        >
+          B
+        </td>
+        <td
+          style="text-align: end;"
+        >
+          2
+        </td>
+        <td
+          style="text-align: end;"
+        >
+          1
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</DocumentFragment>
+`;
+
+exports[`if Select is working correctly renders 1`] = `
+<DocumentFragment>
+  <table
+    data-testid="table"
+    style="margin-top: 2rem; padding-right: 1rem;"
+  >
+    <thead>
+      <tr>
+        <th
+          style="text-align: start;"
+        >
+          <button>
+            Country
+          </button>
+        </th>
+        <th
+          style="text-align: start;"
+        >
+          <button>
+            Recovered
+          </button>
+        </th>
+        <th
+          style="text-align: start;"
+        >
+          <button>
+            Deaths
+          </button>
+        </th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td
+          style="text-align: start;"
+        >
+          A
+        </td>
+        <td
+          style="text-align: end;"
+        >
+          1
+        </td>
+        <td
+          style="text-align: end;"
+        >
+          2
+        </td>
+      </tr>
+      <tr>
+        <td
+          style="text-align: start;"
+        >
+          B
+        </td>
+        <td
+          style="text-align: end;"
+        >
+          2
+        </td>
+        <td
+          style="text-align: end;"
+        >
+          1
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</DocumentFragment>
+`;

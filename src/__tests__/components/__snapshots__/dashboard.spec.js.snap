@@ -1,0 +1,250 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Dashboard is working correctly renders 1`] = `
+<DocumentFragment>
+  <div
+    class="dashboard "
+    data-testid="dashboard"
+  >
+    <select
+      data-testid="select"
+      name="Select view"
+      required=""
+      style="height: 1rem; margin: 1rem;"
+    >
+      <option
+        value="Venezuela Map"
+      >
+        Venezuela Map
+      </option>
+      <option
+        value="Chart by states in Venezuela"
+      >
+        Chart by states in Venezuela
+      </option>
+      <option
+        value="Chart by Countries"
+      >
+        Chart by Countries
+      </option>
+      <option
+        value="World Map"
+      >
+        World Map
+      </option>
+    </select>
+    <aside
+      class="menu"
+    >
+      <div
+        class="menu-box"
+      >
+        <div
+          class="menu-container"
+          data-testid="menu"
+        >
+          <div
+            class="menu-item"
+          >
+            <span
+              class="menu-title"
+            >
+              Confirmed Cases:
+            </span>
+             1009
+          </div>
+          <div
+            class="menu-item"
+          >
+            <span
+              class="menu-title"
+            >
+              Total of deaths:
+            </span>
+             333
+          </div>
+          <div
+            class="menu-item"
+          >
+            <span
+              class="menu-title"
+            >
+              Recovered Cases:
+            </span>
+             234
+          </div>
+        </div>
+        <table
+          data-testid="table"
+          style="margin-top: 2rem; padding-right: 1rem;"
+        >
+          <thead>
+            <tr>
+              <th
+                style="text-align: start;"
+              >
+                <button>
+                  Country
+                </button>
+              </th>
+              <th
+                style="text-align: start;"
+              >
+                <button>
+                  Confirmed
+                </button>
+              </th>
+              <th
+                style="text-align: start;"
+              >
+                <button>
+                  Deaths
+                </button>
+              </th>
+              <th
+                style="text-align: start;"
+              >
+                <button>
+                  Recovered
+                </button>
+              </th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td
+                style="text-align: start;"
+              >
+                Spain
+              </td>
+              <td
+                style="text-align: end;"
+              >
+                8
+              </td>
+              <td
+                style="text-align: end;"
+              >
+                3
+              </td>
+              <td
+                style="text-align: end;"
+              >
+                123
+              </td>
+            </tr>
+            <tr>
+              <td
+                style="text-align: start;"
+              >
+                Venezuela
+              </td>
+              <td
+                style="text-align: end;"
+              >
+                1009
+              </td>
+              <td
+                style="text-align: end;"
+              >
+                333
+              </td>
+              <td
+                style="text-align: end;"
+              >
+                234
+              </td>
+            </tr>
+            <tr>
+              <td
+                style="text-align: start;"
+              >
+                Brazil
+              </td>
+              <td
+                style="text-align: end;"
+              >
+                3
+              </td>
+              <td
+                style="text-align: end;"
+              >
+                5
+              </td>
+              <td
+                style="text-align: end;"
+              >
+                456
+              </td>
+            </tr>
+            <tr>
+              <td
+                style="text-align: start;"
+              >
+                Norway
+              </td>
+              <td
+                style="text-align: end;"
+              >
+                5
+              </td>
+              <td
+                style="text-align: end;"
+              >
+                7
+              </td>
+              <td
+                style="text-align: end;"
+              >
+                789
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      <div
+        class="author"
+        data-testid="social-media"
+      >
+        <div>
+          Made by Adrian Beria
+        </div>
+        <div
+          class="socialMedia"
+        >
+          <a
+            href="https://github.com/Radinax"
+            rel="noopener noreferrer"
+            target="_blank"
+          >
+            <img
+              alt="Github"
+              src="git.png"
+            />
+          </a>
+          <a
+            href="https://twitter.com/Adrberia"
+            rel="noopener noreferrer"
+            target="_blank"
+          >
+            <img
+              alt="Twitter"
+              src="twitter.png"
+            />
+          </a>
+          <a
+            href="https://www.linkedin.com/in/adrianberia2013/"
+            rel="noopener noreferrer"
+            target="_blank"
+          >
+            <img
+              alt="Linkedin"
+              src="linked.png"
+            />
+          </a>
+        </div>
+      </div>
+    </aside>
+  </div>
+</DocumentFragment>
+`;

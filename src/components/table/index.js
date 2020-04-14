@@ -1,24 +1,16 @@
 import React, { Fragment, useState } from 'react'
 import { string, arrayOf, object, bool } from 'prop-types'
 import { capitalizeFirstLetter } from '../../utils/capitalizeFirstLetter'
+import { sortOnClick } from '../../utils/sortOnClick'
 
 const Table = ({ headerData, bodyData, isMobile }) => {
   const [data, setData] = useState(null)
   const [asc, setAsc] = useState(true)
 
-  // eslint-disable-next-line react-hooks/exhaustive-deps
-  const sortOnClick = (sortKey) => {
-    const sortedData = bodyData.sort((a,b) => {
-      if (asc) {
-        if (a[sortKey] > b[sortKey]) return -1
-        if (a[sortKey] < b[sortKey]) return 1
-        return 0;
-      } else {
-        if (a[sortKey] > b[sortKey]) return 1
-        if (a[sortKey] < b[sortKey]) return -1
-        return 0;
-      }
-    })
+  const style = { marginTop: isMobile ? '0' : '2rem', paddingRight: '1rem' }
+
+  const onClick = sortKey => {
+    const sortedData = sortOnClick(asc, sortKey, bodyData)
     setAsc(!asc)
     setData([...sortedData])
   }
@@ -28,7 +20,7 @@ const Table = ({ headerData, bodyData, isMobile }) => {
       key={head}
       style={{ textAlign: 'start'}}
     >
-      <button onClick={() => sortOnClick(head)}>{capitalizeFirstLetter(head)}</button>
+      <button onClick={() => onClick(head)}>{capitalizeFirstLetter(head)}</button>
     </th>
   ))
 
@@ -51,7 +43,7 @@ const Table = ({ headerData, bodyData, isMobile }) => {
 
   return (
     <Fragment>
-      <table style={{ marginTop: isMobile ? '0' : '2rem', paddingRight: '1rem' }}>
+      <table data-testid='table' style={style}>
         {tableHeader}
         {tableBody(temp)}
       </table>

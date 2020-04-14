@@ -7,7 +7,7 @@ const styles = {
 
 const Select = ({ name, value, onChange, values }) => {
   return(
-    <select style={styles} name={name} value={value} onChange={onChange} required>
+    <select data-testid="select" style={styles} name={name} value={value} onChange={onChange} required>
       {values.map(c => <option key={c} value={c}>{c}</option>)}
     </select>
   )

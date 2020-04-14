@@ -51,6 +51,7 @@ const sliceCovidVenezuela = createSlice({
     }
   }
 })
+
 const sliceCovidGlobal = createSlice({
   name: 'covidDataGlobal',
   initialState,
@@ -71,9 +72,19 @@ const sliceCovidGlobal = createSlice({
   }
 })
 
+// Actions
+export const {
+  fetchingCovidDataVenezuela,
+  fetchingCovidDataVenezuelaSuccess,
+  fetchingCovidDataVenezuelaError } = sliceCovidVenezuela.actions
+
+// Reducers
+export const covidVenezuelaReducer = sliceCovidVenezuela.reducer
+export const covidGlobalReducer = sliceCovidGlobal.reducer
+
 const reducer = combineReducers({
-  covidVenezuela: sliceCovidVenezuela.reducer,
-  covidGlobal: sliceCovidGlobal.reducer
+  covidVenezuela: covidVenezuelaReducer,
+  covidGlobal: covidGlobalReducer
 })
 
 // Configuring our store which will be used in Provider to enable Global State

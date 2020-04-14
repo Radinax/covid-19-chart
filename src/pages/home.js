@@ -13,6 +13,8 @@ import Dashboard from '../components/dashboard'
 import Select from '../components/select'
 // Styles
 import './styles.css'
+// Utils
+import { filterByCountry } from '../utils/filterByCountry'
 
 const mapDispatchToProps = ({ fetchCovidVenezuelaData, fetchCovidGlobalData })
 const mapStateToProps = state => ({
@@ -30,8 +32,6 @@ const vw = Math.max(document.documentElement.clientWidth, window.innerWidth || 0
 const isMobile = vw < 450
 
 const selectOptions = ['Venezuela Map', 'Chart by states in Venezuela', 'Chart by Countries', 'World Map']
-
-const filterByCountry = (arr, country) => arr.filter(o => o.country === country)[0]
 
 const Home = ({ fetchCovidVenezuelaData, fetchCovidGlobalData, covidVenezuela, covidGlobal }) => {
   const [view, setView] = useState(selectOptions[0])
