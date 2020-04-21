@@ -19,7 +19,7 @@ export const fetchCovidVenezuelaData = createAsyncThunk(
 export const fetchCovidGlobalData = createAsyncThunk(
   'covidDataGlobal/fetchingCovidGlobalData',
   async () => {
-    const response = await axios.get('https://corona.lmao.ninja/countries')
+    const response = await axios.get('https://corona.lmao.ninja/v2/countries')
     return response.data
   }
 )
